@@ -1,4 +1,5 @@
-
+# This could just be a shell or bash script but I'm fine with this
+.PHONY: all
 all:
 	git submodule init
 	cd llvm-project && \
