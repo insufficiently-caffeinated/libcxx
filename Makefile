@@ -2,6 +2,7 @@
 .PHONY: all
 all:
 	git submodule init
+	git submodule update
 	cd llvm-project && \
 	mkdir build || true && \
 	cmake -G Ninja -S llvm -B build -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gclang -DCMAKE_CXX_COMPILER=gclang++ && \
@@ -12,6 +13,6 @@ all:
 	mkdir ll || true
 	cd ll && llvm-ar -x ../build/bca/libcxx.bca
 	cd ll && llvm-ar -x ../build/bca/libcxxabi.bca
-	for f in ll/.*.bc; do llvm-dis $f; done
+	llvm-link ll/.*.bc -o ll/libcxx.temp
 	rm ll/.*.bc
-	cd ll && for f in .*.ll; do mv $f "${f:1}"; done
+	mv ll/libcxx.temp ll/libcxx.bc
