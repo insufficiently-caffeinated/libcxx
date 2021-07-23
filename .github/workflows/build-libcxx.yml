@@ -27,6 +27,7 @@ jobs:
       - name: Build
         run: make
       - uses: ncipollo/release-action@v1
+        if: github.ref == 'refs/heads/master'
         with:
           artifacts: "ll/libcxx.bc"
           body: "LLVM IR for `libcxx` and `libcxxabi`"
