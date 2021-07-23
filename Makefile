@@ -12,6 +12,6 @@ all:
 	mkdir ll || true
 	cd ll && llvm-ar -x ../build/bca/libcxx.bca
 	cd ll && llvm-ar -x ../build/bca/libcxxabi.bca
-	llvm-link ll/.*.bc -o libcxx.bc
+	llvm-link ll/.*.bc -o ll/libcxx.temp
 	rm ll/.*.bc
-	mv libcxx.bc ll/libcxx.bc
+	mv ll/libcxx.temp ll/libcxx.bc
