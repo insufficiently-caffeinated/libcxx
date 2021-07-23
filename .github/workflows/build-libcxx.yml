@@ -30,6 +30,7 @@ jobs:
           body: "LLVM IR for `libcxx` and `libcxxabi`"
           token: ${{ secrets.GITHUB_TOKEN }}
           commit: master
+          tag: v0.0.${{ github.run_number }}
 
       - name: Install required dependencies
         # ubuntu-latest already has many of the packages we want installed. See
