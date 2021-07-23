@@ -7,14 +7,13 @@ permissions:
   actions: read
   checks: read
   contents: read
-  deployments: read
+  deployments: write
   issues: read
-  packages: read
+  packages: write
   pull-requests: read
   repository-projects: read
   security-events: none
   statuses: none
-
 
 jobs:
   build:
@@ -29,6 +28,7 @@ jobs:
           artifacts: "ll/libcxx.bc"
           body: "LLVM IR for `libcxx` and `libcxxabi`"
           token: ${{ secrets.GITHUB_TOKEN }}
+          commit: master
           tag: v0.0.${{ github.run_number }}
 
       - name: Install required dependencies
