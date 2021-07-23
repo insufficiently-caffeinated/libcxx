@@ -20,6 +20,7 @@ jobs:
             libfmt-dev \
             libboost-all-dev
           sudo ./.github/scripts/update-alternatives-llvm.sh 11 20
+          go get github.com/SRI-CSL/gllvm/cmd/...
 
       - name: Build
         run: make

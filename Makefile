@@ -2,6 +2,7 @@
 .PHONY: all
 all:
 	git submodule init
+	git submodule update
 	cd llvm-project && \
 	mkdir build || true && \
 	cmake -G Ninja -S llvm -B build -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gclang -DCMAKE_CXX_COMPILER=gclang++ && \
