@@ -2,7 +2,6 @@ name: build-libcxx
 
 on:
   push:
-  pull_request:
 
 jobs:
   build:
