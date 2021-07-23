@@ -12,6 +12,6 @@ all:
 	mkdir ll || true
 	cd ll && llvm-ar -x ../build/bca/libcxx.bca
 	cd ll && llvm-ar -x ../build/bca/libcxxabi.bca
-	for f in ll/.*.bc; do llvm-dis $f; done
+	llvm-link ll/.*.bc -o libcxx.bc
 	rm ll/.*.bc
-	cd ll && for f in .*.ll; do mv $f "${f:1}"; done
+	mv libcxx.bc ll/libcxx.bc
