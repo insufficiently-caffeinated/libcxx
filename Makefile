@@ -6,8 +6,6 @@ all:
 	cd llvm-project && \
 	mkdir build || true && \
 	cmake -G Ninja -S llvm -B build \
-	-DLIBCXXABI_ENABLE_EXCEPTIONS=OFF \
-	-DLIBCXX_ENABLE_EXCEPTIONS=OFF \
 	-DLIBCXX_ENABLE_THREADS=OFF \
 	-DLIBCXX_HAS_PTHREAD_API=OFF \
 	-DLLVM_ENABLE_THREADS=OFF \
