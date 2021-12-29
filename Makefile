@@ -30,5 +30,6 @@ all:
 	llvm-link ll/.*.bc -o ll/libcxx.temp
 	rm ll/.*.bc
 	mv ll/libcxx.temp ll/libcxx.bc
+	cp ll/libcxx.bc build/libcxx/lib/
 	tar -czvf libcxx.tar.gz build/libcxx/
 	mv libcxx.tar.gz ll/
