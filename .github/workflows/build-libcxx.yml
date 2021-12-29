@@ -29,7 +29,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         if: github.ref == 'refs/heads/master'
         with:
-          artifacts: "ll/libcxx.bc"
+          artifacts: "ll/libcxx.bc,ll/libcxx.tar.gz"
           body: "LLVM IR for `libcxx` and `libcxxabi`"
           token: ${{ secrets.GITHUB_TOKEN }}
           commit: master

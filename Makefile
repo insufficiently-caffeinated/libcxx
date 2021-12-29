@@ -6,6 +6,7 @@ all:
 	cd llvm-project && \
 	mkdir build || true && \
 	cmake -G Ninja -S llvm -B build \
+	-DCMAKE_INSTALL_PREFIX=../build/libcxx \
 	-DLIBCXXABI_ENABLE_EXCEPTIONS=ON \
 	-DLIBCXX_ENABLE_EXCEPTIONS=ON \
 	-DLIBCXX_ENABLE_THREADS=OFF \
@@ -18,7 +19,8 @@ all:
 	-DLIBCXXABI_HAS_EXTERNAL_THREAD_API=OFF \
 	-DLIBCXXABI_BUILD_EXTERNAL_THREAD_LIBRARY=OFF \
 	-DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gclang -DCMAKE_CXX_COMPILER=gclang++ && \
-	ninja -C build cxx cxxabi
+	ninja -C build cxx cxxabi && \
+	ninja -C build install-cxx install-cxxabi
 	mkdir -p build/bca || true
 	get-bc -o build/bca/libcxx.bca llvm-project/build/lib/libc++.a
 	get-bc -o build/bca/libcxxabi.bca llvm-project/build/lib/libc++abi.a
@@ -28,3 +30,5 @@ all:
 	llvm-link ll/.*.bc -o ll/libcxx.temp
 	rm ll/.*.bc
 	mv ll/libcxx.temp ll/libcxx.bc
+	tar -czvf libcxx.tar.gz build/libcxx/
+	mv libcxx.tar.gz ll/
