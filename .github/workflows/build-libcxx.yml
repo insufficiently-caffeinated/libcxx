@@ -6,24 +6,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: insufficientlycaffeinated/alpine-bob:latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '^1.16.6'
-      - name: Install required dependencies
-        # ubuntu-latest already has many of the packages we want installed. See
-        # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-        run: |
-          sudo apt update
-          sudo apt-get install -y \
-            ninja-build \
-            libgtest-dev \
-            libfmt-dev \
-            libboost-all-dev
-          sudo ./.github/scripts/update-alternatives-llvm.sh 11 20
-          go get github.com/SRI-CSL/gllvm/cmd/...
-
       - name: Build
         run: make
       - uses: ncipollo/release-action@v1

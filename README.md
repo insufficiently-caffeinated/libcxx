@@ -11,3 +11,21 @@ Depends on:
 
 To get the LLVM IR just run `make` in the root directory
 and find all the files in `ll/`
+
+## Alpine Docker build
+
+Currently, the build is set up to work on an Alpine Docker container.
+To make the Docker image:
+```bash
+docker build - < Dockerfile
+sudo docker tag "<tag from prev cmd>" insufficientlycaffeinated/alpine-bob:latest
+docker run -v "<path to repo>":/build -it insufficientlycaffeinated/alpine-bob:latest /bin/sh
+(docker shell) cd build
+(docker shell) make clean
+(docker shell) make
+```
+
+To deploy the Docker container to the Docker registry:
+```bash
+docker push insufficientlycaffeinated/alpine-bob:latest
+```
