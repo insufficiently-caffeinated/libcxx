@@ -1,8 +1,7 @@
 # This could just be a shell or bash script but I'm fine with this
 .PHONY: all
 all:
-	git submodule init
-	git submodule update
+	git submodule update --init --depth 1
 	cd llvm-project && \
 	mkdir build || true && \
 	cmake -G Ninja -S llvm -B build \
