@@ -18,6 +18,10 @@ all:
 	-DLIBCXXABI_HAS_WIN32_THREAD_API=OFF \
 	-DLIBCXXABI_HAS_EXTERNAL_THREAD_API=OFF \
 	-DLIBCXXABI_BUILD_EXTERNAL_THREAD_LIBRARY=OFF \
+	-DLIBCXX_HAS_MUSL_LIBC=ON \
+	-DLIBCXX_ENABLE_SHARED=OFF \
+	-DLIBCXXABI_ENABLE_SHARED=OFF \
+	-DLIBCXXABI_LINK_TESTS_WITH_SHARED_LIBCXXABI=OFF \
 	-DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gclang -DCMAKE_CXX_COMPILER=gclang++ && \
 	ninja -C build cxx cxxabi && \
 	ninja -C build install-cxx install-cxxabi
@@ -33,3 +37,7 @@ all:
 	cp ll/libcxx.bc build/libcxx/lib/
 	tar -czvf libcxx.tar.gz build/libcxx/
 	mv libcxx.tar.gz ll/
+
+.PHONY: clean
+clean:
+	rm -rf build llvm-project/build ll
