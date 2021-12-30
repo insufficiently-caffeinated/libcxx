@@ -5,7 +5,9 @@ on:
 
 jobs:
   build:
-    runs-on: insufficientlycaffeinated/alpine-bob:latest
+    runs-on: ubuntu-latest
+    container:
+      image: insufficientlycaffeinated/alpine-bob:latest
     steps:
       - uses: actions/checkout@v2
       - name: Build
